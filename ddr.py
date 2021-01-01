@@ -72,33 +72,19 @@ for i in range(20):
     time.sleep(1)
     
     user_event = 'none'
-    
-    ##### WORKING UNTIL HERE --- SCORE NOT UPDATING ON USER INPUT #####
-    ##### print get_events() each time to check which directions are being inputted #####
-    ##### likely incorrect if statement syntax on event.direction check (line 81) #####
+
     
     for event in sense.stick.get_events():
-        if event.direction == 'left' or 'right' or 'down' or 'up':
-            user_event = event
+        if user_event != 'none':
             break
+        if event.direction == 'left' or 'right' or 'down' or 'up':
+            user_event = event.direction
+        
     if arrow == user_event:
         score = score + 1
     
     print(score)
-
-
-# while True:
-#     for event in sense.stick.get_events():
-#         if event.direction == 'left':
-#             sense.clear()
-#             sense.set_pixels(left_arrow)
-#         elif event.direction == 'right':
-#             sense.clear()
-#             sense.set_pixels(right_arrow)
-#         elif event.direction == 'up':
-#             sense.clear()
-#             sense.set_pixels(up_arrow)
-#         elif event.direction == 'down':
-#             sense.clear()
-#             sense.set_pixels(down_arrow)
+    
+    
+print("Final Score: " + str(score))
             
