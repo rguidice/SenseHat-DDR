@@ -56,7 +56,7 @@ directions = ['left', 'right', 'up', 'down']
 
 score = 0
 
-for i in range(20):
+for i in range(10):
     sense.clear()
     arrow = choice(directions)
     
@@ -87,4 +87,6 @@ for i in range(20):
     
     
 print("Final Score: " + str(score))
+sense.show_message("Final Score: ", scroll_speed = 0.05)
+sense.show_letter(str(score))
             
