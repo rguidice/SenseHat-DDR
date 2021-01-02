@@ -1,6 +1,16 @@
 from sense_hat import SenseHat
 from random import choice
 import time
+import argparse
+
+def arg_checker(arg):
+    if str(arg) not in ['easy', 'medium', 'hard']:
+        raise argparse.ArgumentTypeError('Invalid argument.')
+    return str(arg)
+
+parser = argparse.ArgumentParser(description = 'Game settings')
+parser.add_argument('-d', '--difficulty', dest = 'difficulty', type = arg_checker, default = 'easy', help = 'Game difficulty - options are "easy", "medium", and "hard" (Default = "easy")')
+args = parser.parse_args()
 
 sense = SenseHat()
 sense.clear()
@@ -54,9 +64,16 @@ right_arrow = [
 
 directions = ['left', 'right', 'up', 'down']
 
+if args.difficulty == "easy":
+    delay = 3
+elif args.difficulty == "medium":
+    delay = 2
+else:
+    delay = 1
+
 score = 0
 
-for i in range(10):
+for i in range(20):
     sense.clear()
     arrow = choice(directions)
     
@@ -69,7 +86,7 @@ for i in range(10):
     elif arrow == 'down':
         sense.set_pixels(down_arrow)
         
-    time.sleep(1)
+    time.sleep(delay)
     
     user_event = 'none'
 
@@ -88,5 +105,5 @@ for i in range(10):
     
 print("Final Score: " + str(score))
 sense.show_message("Final Score: ", scroll_speed = 0.05)
-sense.show_letter(str(score))
+sense.show_message(str(score), scroll_speed = 0.2)
             
