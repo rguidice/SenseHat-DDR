@@ -17,6 +17,7 @@ sense.clear()
 
 a = (0, 255, 255)
 b = (0, 0, 0)
+pink = (255, 153, 255)
 
 up_arrow = [
     b, b, b, a, b, b, b, b,
@@ -80,6 +81,13 @@ while True:
 
     score = 0
     
+    sense.show_letter('3', pink)
+    time.sleep(1)
+    sense.show_letter('2', pink)
+    time.sleep(1)
+    sense.show_letter('1', pink)
+    time.sleep(1)
+
     for i in range(10):
         sense.clear()
         arrow = choice(directions)
