@@ -63,6 +63,7 @@ right_arrow = [
 ]
 
 directions = ['left', 'right', 'up', 'down']
+leaderboard = []
 
 while True:
     end_game = False
@@ -114,6 +115,8 @@ while True:
     sense.show_message("Final Score: ", scroll_speed = 0.05)
     sense.show_message(str(score), scroll_speed = 0.2)
     
+    leaderboard.append(score)
+    
     diff_menu = False
     restart = False
     
@@ -143,3 +146,5 @@ while True:
     if end_game == True:
         break
 
+sense.show_message("High Score: ", scroll_speed = 0.05)
+sense.show_message(str(max(leaderboard)), scroll_speed = 0.2)
